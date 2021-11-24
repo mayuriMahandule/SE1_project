@@ -1,15 +1,27 @@
 import React from 'react';
-
+import { Container, AppBar, Typography, Grow, Grid } from '@material-ui/core';
 const App = () => {
     return (
-        <div>
-            <h1>OneStopPrice</h1>
-            <a class="active" href="#home">Home</a>
-            <a href="#about">About</a>
-            <a href="#contact">Contact</a>
-            <input type="text" placeholder="Search.."></input>
-        </div>
-        
+        <div class = "login">
+            <h1> Login</h1>
+            <form>
+            <label>
+            Name:
+            <input type="text" name="name" />
+            </label>
+            <label>
+            Password:
+            <input type="text" name="password" />
+            </label>
+
+            <input type="submit" value="Submit" />
+                    </form>
+            
+                    <p class = "Para1">By creating an account, you agree to OneStopPrice's <a href = "Condition.html">Conditions of Use</a> and 
+                        <a href = "Privacy.html">Privacy Notice</a>.
+                    </p>
+                    <p class = "Para2">New customer? <a href = "Signup.html">Signup</a></p>
+                </div>
     )
 }
 
