@@ -8,73 +8,70 @@ import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-export default function ActionAreaCard() {
-  return (
-    <Card sx={{ maxWidth: 500 }}>
-      <CardActionArea>
-        <CardMedia
-          component="img"
-          height="250"
-          image="/assets/caiman-lizard-g431c0a90d_1920.jpg"
-          alt="green iguana"
-        />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
-            Lizard
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            Lizards are a widespread group of squamate reptiles, with over 6,000
-            species, ranging across all continents except Antarctica
-          </Typography>
-        </CardContent>
-        <div>
-      <Accordion>
+import Link from '@mui/material/Link';
+
+
+
+
+class ActionAreaCard extends React.Component {
+
+    constructor(props){
+        super(props);
+        this.renderAccordions = this.renderAccordions.bind(this);
+    }
+
+    renderAccordions(){
+
+        return this.props.ecommerceOptions.map((ecommerceOption, index) => {
+            return (
+                <Accordion>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
-          <Typography>Accordion 1</Typography>
+          <Typography>{ecommerceOption.website} - {ecommerceOption.price}</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget.
+          <Link href={ecommerceOption.link} target="_blank"> Get this product at {ecommerceOption.website}</Link>
           </Typography>
         </AccordionDetails>
       </Accordion>
-      <Accordion>
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel2a-content"
-          id="panel2a-header"
-        >
-          <Typography>Accordion 2</Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-          <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget.
+            );
+        });
+
+    }
+
+    render(){
+
+        return(
+            <>
+            <Card sx={{ maxWidth: 500 }}>
+      <CardActionArea>
+        <CardMedia
+          component="img"
+          height="250"
+        image={this.props.productImage}
+          alt="Product Image"
+        />
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="div">
+            {this.props.modelName}
           </Typography>
-        </AccordionDetails>
-      </Accordion>
-      <Accordion>
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel2a-content"
-          id="panel2a-header"
-        >
-          <Typography>Accordion 3</Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-          <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget.
+          <Typography variant="body2" color="text.secondary">
+              {this.props.description}
           </Typography>
-        </AccordionDetails>
-      </Accordion>
+        </CardContent>
+        <div>
+            {this.renderAccordions()}
     </div>
       </CardActionArea>
     </Card>
-  );
+            </>
+        );
+    }
 }
+
+export default ActionAreaCard;
+
