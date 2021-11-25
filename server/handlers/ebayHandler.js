@@ -42,14 +42,15 @@ export const searchEbayProducts = async(searchString) => {
       */
 
       try {
-        const response = await axios.get('http://localhost:8400/search/iphone')
-        const jsonStringResponse = JSON.stringify(response, getCircularReplacer());
-       //console.log(jsonStringResponse);
-       //response = JSON.parse(jsonStringResponse)
-        console.log(jsonStringResponse)
-        return jsonStringResponse
+          const response = await axios.get('http://localhost:8400/search/iphone')
+          const jsonStringResponse = JSON.stringify(response, getCircularReplacer());
+        //console.log(jsonStringResponse);
+        //response = JSON.parse(jsonStringResponse)
+          console.log(jsonStringResponse)
+          const ebayProductsJson = JSON.parse(jsonStringResponse)["data"]["products"]
+          return ebayProductsJson
       } catch (error) {
-        console.log(error.response);
+          console.log(error.response);
       }
 
 }
