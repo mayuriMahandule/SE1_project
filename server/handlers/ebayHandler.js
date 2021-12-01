@@ -2,7 +2,7 @@ import http from 'http'
 import axios from 'axios'
 import {parse, stringify}  from 'flatted'
 
-const EBAY_PRODUCT_SEARCH_URL = 'http://localhost:8400/search/iphone'
+const EBAY_PRODUCT_SEARCH_URL = 'http://localhost:8400/search'
 
 const getCircularReplacer = () => {
     const seen = new WeakSet();
@@ -42,7 +42,7 @@ export const searchEbayProducts = async(searchString) => {
       */
 
       try {
-          const response = await axios.get('http://localhost:8400/search/iphone')
+          const response = await axios.get('http://localhost:8400/search/'+searchString)
           const jsonStringResponse = JSON.stringify(response, getCircularReplacer());
         //console.log(jsonStringResponse);
         //response = JSON.parse(jsonStringResponse)
